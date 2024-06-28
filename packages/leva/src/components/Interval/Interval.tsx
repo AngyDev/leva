@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Label, Row } from '../UI'
 import { Vector } from '../Vector'
 import { Range, RangeWrapper, Scrubber, Indicator, sanitizeStep } from '../Number'
-import { useDrag } from '../../hooks'
+import { useDragGesture } from '../../hooks'
 import { invertedRange, range } from '../../utils'
 import { useInputContext } from '../../context'
 import { styled, useTh } from '../../styles'
@@ -21,7 +21,7 @@ function IntervalSlider({ value, bounds: [min, max], onDrag, ...settings }: Inte
   const rangeWidth = useRef<number>(0)
   const scrubberWidth = useTh('sizes', 'scrubberWidth')
 
-  const bind = useDrag(({ event, first, xy: [x], movement: [mx], memo = {} }) => {
+  const bind = useDragGesture(({ event, first, xy: [x], movement: [mx], memo = {} }) => {
     if (first) {
       const { width, left } = ref.current!.getBoundingClientRect()
       rangeWidth.current = width - parseFloat(scrubberWidth)

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react'
-import { useDrag } from '../../hooks'
+import { useDragGesture } from '../../hooks'
 import { debounce } from '../../utils'
 import { FolderTitleProps } from '../Folder'
 import { Chevron } from '../UI'
@@ -78,23 +78,24 @@ export function TitleWithFilter({
     else inputRef.current?.blur()
   }, [filterShown])
 
-  const bind = useDrag(
-    ({ offset: [x, y], first, last }) => {
-      onDrag({ x, y })
+  // TODO: review, removed temporary for error
+  // const bind = useDragGesture(
+  //   ({ offset: [x, y], first, last }) => {
+  //     onDrag({ x, y })
 
-      if (first) {
-        onDragStart({ x, y })
-      }
+  //     if (first) {
+  //       onDragStart({ x, y })
+  //     }
 
-      if (last) {
-        onDragEnd({ x, y })
-      }
-    },
-    {
-      filterTaps: true,
-      from: ({ offset: [x, y] }) => [from?.x || x, from?.y || y],
-    }
-  )
+  //     if (last) {
+  //       onDragEnd({ x, y })
+  //     }
+  //   },
+  //   {
+  //     filterTaps: true,
+  //     from: ({ offset: [x, y] }) => [from?.x || x, from?.y || y],
+  //   }
+  // )
 
   useEffect(() => {
     const handleShortcut = (event: KeyboardEvent) => {
@@ -112,7 +113,7 @@ export function TitleWithFilter({
         <Icon active={!toggled} onClick={() => toggle()}>
           <Chevron toggled={toggled} width={12} height={8} />
         </Icon>
-        <TitleContainer {...(drag ? bind() : {})} drag={drag} filterEnabled={filterEnabled}>
+        <TitleContainer {...(drag ? {} : {})} drag={drag} filterEnabled={filterEnabled}>
           {title === undefined && drag ? (
             <svg width="20" height="10" viewBox="0 0 28 14" xmlns="http://www.w3.org/2000/svg">
               <circle cx="2" cy="2" r="2" />

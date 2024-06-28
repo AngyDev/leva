@@ -1,9 +1,9 @@
 import { useInputContext } from '../context'
-import { FullGestureState, useDrag as useDragHook, UserDragConfig } from '@use-gesture/react'
+import { FullGestureState, useDrag, UserDragConfig } from '@use-gesture/react'
 
-export function useDrag(handler: (state: FullGestureState<'drag'>) => any, config?: UserDragConfig) {
+export function useDragGesture(handler: (state: FullGestureState<'drag'>) => any, config?: UserDragConfig) {
   const { emitOnEditStart, emitOnEditEnd } = useInputContext()
-  return useDragHook((state) => {
+  return useDrag((state) => {
     if (state.first) {
       document.body.classList.add('leva__panel__dragged')
       emitOnEditStart?.()

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect, useLayoutEffect } from 'react'
-import { useDrag } from '../../hooks'
+import { useDragGesture } from '../../hooks'
 import { clamp, multiplyStep } from '../../utils'
 import { JoystickTrigger, JoystickPlayground } from './StyledJoystick'
 import { useTh } from '../../styles'
@@ -87,7 +87,7 @@ export function Joystick({ value, settings, onUpdate }: JoystickProps) {
     }
   }, [])
 
-  const bind = useDrag(({ first, active, delta: [dx, dy], movement: [mx, my] }) => {
+  const bind = useDragGesture(({ first, active, delta: [dx, dy], movement: [mx, my] }) => {
     if (first) setShowJoystick(true)
 
     const _x = clamp(mx, -w, w)

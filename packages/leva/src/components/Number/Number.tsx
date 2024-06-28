@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NumberInput } from '../ValueInput'
 import { Label, Row } from '../UI'
-import { useDrag } from '../../hooks'
+import { useDragGesture } from '../../hooks'
 import { RangeGrid } from './StyledNumber'
 import { RangeSlider } from './RangeSlider'
 import { useInputContext } from '../../context'
@@ -18,7 +18,7 @@ type DraggableLabelProps = {
 
 const DraggableLabel = React.memo(({ label, onUpdate, step, innerLabelTrim }: DraggableLabelProps) => {
   const [dragging, setDragging] = useState(false)
-  const bind = useDrag(({ active, delta: [dx], event, memo = 0 }) => {
+  const bind = useDragGesture(({ active, delta: [dx], event, memo = 0 }) => {
     setDragging(active)
     memo += dx / 2
     if (Math.abs(memo) >= 1) {
@@ -57,7 +57,7 @@ export function Number({
 }
 
 export function NumberComponent() {
-  const props = useInputContext<NumberProps>()
+  const { key, ...props } = useInputContext<NumberProps>()
   const { label, value, onUpdate, settings, id } = props
   const { min, max } = settings
   const hasRange = max !== Infinity && min !== -Infinity
@@ -67,7 +67,7 @@ export function NumberComponent() {
       <Label>{label}</Label>
       <RangeGrid hasRange={hasRange}>
         {hasRange && <RangeSlider value={parseFloat(value as any)} onDrag={onUpdate} {...settings} />}
-        <Number {...props} id={id} label="value" innerLabelTrim={hasRange ? 0 : 1} />
+        <Number key={key} {...props} id={id} label="value" innerLabelTrim={hasRange ? 0 : 1} />
       </RangeGrid>
     </Row>
   )

@@ -33,7 +33,15 @@ export { createPlugin } from '../plugin'
 // export vector utilities
 export * from '../components/Vector/vector-plugin'
 // export useful hooks
-export { useDrag, useCanvas2d, useTransform, useInput, useValue, useValues, useInputSetters } from '../hooks'
+export {
+  useDragGesture as useDrag,
+  useCanvas2d,
+  useTransform,
+  useInput,
+  useValue,
+  useValues,
+  useInputSetters,
+} from '../hooks'
 export { useInputContext, useStoreContext } from '../context'
 
 // export styling utilities
