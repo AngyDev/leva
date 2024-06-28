@@ -13,8 +13,7 @@
   "bugs": "https://github.com/pmndrs/leva/issues",
   "preconstruct": {
     "entrypoints": [
-      "index.ts",
-      "plugin/index.ts"
+      "index.ts"
     ]
   },
   "peerDependencies": {
@@ -25,7 +24,7 @@
     "@radix-ui/react-portal": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.5",
     "@stitches/react": "^1.2.8",
-    "@use-gesture/react": "^10.2.5",
+    "@use-gesture/react": "10.3.1",
     "colord": "^2.9.2",
     "dequal": "^2.0.2",
     "merge-value": "^1.0.0",
@@ -35,6 +34,6 @@
     "zustand": "^3.6.9"
   },
   "devDependencies": {
-    "@welldone-software/why-did-you-render": "^6.2.3"
+    "@welldone-software/why-did-you-render": "^8.0.3"
   }
 }
