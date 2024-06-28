@@ -12,6 +12,7 @@ function convertToRgb(value: ColorType, format: string) {
   return format !== 'rgb' ? colord(value).toRgb() : (value as RgbaColor)
 }
 
+// update component
 export function Color({
   value,
   displayValue,
